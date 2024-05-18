@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oficina de HTML</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <header>
+
+        <h1>Faça cálculo do IMC</h1>
+
+    </header>
+    
+    <section>
+        
+        <form action="" name="" method="get">
+            <p>
+                <label for="txt_peso"> Digite seu peso: </label>
+                <input type="text" name="txt_peso" id="txt_peso">
+            </p>
+
+            <p>
+                <label for="txt_altura"> Digite sua altura: </label>
+                <input type="text" name="txt_altura" id="txt_altura" placeholder="digite a altura em metros">
+            </p>
+
+            <p>
+                <button id="btn_calcular_imc">Calcular IMC</button>
+            </p>
+
+            <p id="txt_resposta"></p>
+            <p id="txt_emoji"></p>
+
+        </form>
+
+    </section>
+
+    <footer>
+        <h2>Volte sempre!</h2>
+    </footer>
+    
+    <script>
+
+    let caixaPeso = document.getElementById('txt_peso');
+    let caixaAltura = document.getElementById('txt_altura');
+    let botaoIMC = document.getElementById('btn_calcular_imc'); 
+    let resposta = document.getElementById('txt_resposta');
+    let emoji = document.getElementById('txt_emoji');
+    let resultadoIMC = 0;
+
+    botaoIMC.addEventListener('click', function(evento){
+    
+        evento.preventDefault();
+
+        let peso = caixaPeso.value;
+        let altura = caixaAltura.value;
+
+        resultadoIMC = peso / (altura * altura);
+
+        if(caixaPeso.value && caixaAltura.value != ""){
+            if(resultadoIMC < 18.5){
+
+                resposta.textContent = "O seu IMC é: " + resultadoIMC.toFixed(2);
+                emoji.textContent = "Você está abaixo do peso! ( • ᴖ • ｡)";
+
+            } else {
+                if(resultadoIMC > 25) {
+
+                    resposta.textContent = "O seu IMC é: " + resultadoIMC.toFixed(2);
+                    emoji.textContent = "Você está acima do peso! (·•᷄∩•᷅ )";
+
+                } else {
+
+                    resposta.textContent = "O seu IMC é: " + resultadoIMC.toFixed(2);
+                    emoji.textContent = "Você está no peso ideal! ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧";
+
+                }
+            }
+        } else {
+
+            resposta.textContent = "Digite um valor.";
+        }
+
+    });
+
+    </script>
+    
+
+</body>
+</html>
